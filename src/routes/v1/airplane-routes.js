@@ -15,9 +15,17 @@ const router = express.Router();
     .get(
     '/',
         AirplaneController.getAirplanes);
+
+
     router
     .get(
     '/:id',
-    AirplaneController.getAirplane);
+        AirplaneController.getAirplane);
+    
+    
+    router
+    .delete(
+    '/:id',
+    AirplaneController.destroyAirplane);
 
 module.exports = router;

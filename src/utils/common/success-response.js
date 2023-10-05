@@ -1,6 +1,6 @@
 const success = {
     success: true,
-    message: ' successfully completed the re quest',
+    message: ' successfully completed the request',
     data: {},
     error: {}
 }
