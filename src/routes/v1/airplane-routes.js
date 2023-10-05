@@ -14,6 +14,10 @@ const router = express.Router();
     router
     .get(
     '/',
-    AirplaneController.getAirplanes);
+        AirplaneController.getAirplanes);
+    router
+    .get(
+    '/:id',
+    AirplaneController.getAirplane);
 
 module.exports = router;
