@@ -9,7 +9,12 @@ const router = express.Router();
     .post(
     '/',
     FlightMiddlewares.validCreateRequest,
-    FlightController.createFlight);
+        FlightController.createFlight);
+    
+        router
+    .get(
+    '/',
+    FlightController.getAllFlights);
 
 
 module.exports = router;

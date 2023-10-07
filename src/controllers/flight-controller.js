@@ -1,7 +1,8 @@
 const { log } = require('winston');
 const { FlightService } = require('../services')
 const { StatusCodes } = require('http-status-codes')
-const {ErrorResponse,SuccessResponse}=require('../utils/common')
+const {ErrorResponse,SuccessResponse}=require('../utils/common');
+const { query } = require('express');
 
 async function createFlight(req, res) {
     try {
@@ -31,12 +32,28 @@ async function createFlight(req, res) {
     }
 }
 
+async function getAllFlights(req, res) {
+    
+    try {
 
+        const flights= await FlightService.getAllFlights(req.query)
+        SuccessResponse.data = flights;
+        return res
+            .status(StatusCodes.CREATED)
+            .json(SuccessResponse);
 
+        
+     } catch (error) {
+         ErrorResponse.error = error;
+        return res
+            .status(error.statusCode)
+         .json(ErrorResponse);
+     }
+}
 
 
 module.exports = {
     createFlight,
-   
+   getAllFlights
     
 }
