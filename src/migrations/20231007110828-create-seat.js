@@ -1,4 +1,7 @@
 'use strict';
+const { Enums } = require('../utils/common');
+const { BUSINESS, PREMIUM_ECONOMY, FIRST_CLASS, ECONOMY } = Enums.SEAT_TYPE;
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -10,16 +13,27 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       airplaneId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Airplanes',
+          key: 'id'
+        },
+        onDelete: 'CASCADE',
       },
       row: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       col: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
-      class: {
-        type: Sequelize.STRING
+      type: {
+        type: Sequelize.ENUM,
+        values: [BUSINESS, ECONOMY, PREMIUM_ECONOMY, FIRST_CLASS],
+        defaultValue: ECONOMY,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
