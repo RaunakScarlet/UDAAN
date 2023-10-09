@@ -87,9 +87,30 @@ throw new AppError('cannot fetch data of the flight',StatusCodes.INTERNAL_SERVER
      }
 }
 
+// async function updateSeats(data) {
+//     try {
+//         const response = await flightRepository.updatedRemainingSeats(data.flightId,data.seats,data.dec);
+//         return response;
+//     } catch (error) {
+//         console.log(error);
+//         throw new AppError('Cannot update seats of the flights', StatusCodes.INTERNAL_SERVER_ERROR);
+//     }
+// }
+
+async function updateSeats(data) {
+    try {
+        const response = await flightRepository.updateRemainingSeats(data.flightId, data.seats, data.dec);
+        return response;
+    } catch(error) {
+        console.log(error);
+        throw new AppError('Cannot update data of the flight', StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
 module.exports = {
     createFlight,
     getAllFlights,
-    getFlight
+    getFlight,
+    updateSeats
    
 }
