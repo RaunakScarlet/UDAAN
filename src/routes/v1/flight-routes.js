@@ -14,7 +14,12 @@ const router = express.Router();
         router
     .get(
     '/',
-    FlightController.getAllFlights);
+        FlightController.getAllFlights);
+    
+         router
+    .get(
+    '/:id',
+        FlightController.getFlight);
 
 
 module.exports = router;
